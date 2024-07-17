@@ -82,10 +82,11 @@ const Testimonial: React.FC = () => {
                 animate={controls}
             >
                 <motion.h2
-                    className="text-4xl font-bold text-center mb-12 text-violet-700"
+                    className="text-4xl font-bold text-center mb-12 text-violet-700 items-center gap-3 flex flex-col"
                     variants={itemVariants}
                 >
-                    What Our Clients Say
+                    <span className='w-44 border-2 border-violet-600'></span>
+                    <span>What Our Clients Say</span>
                 </motion.h2>
                 <motion.div
                     className="flex overflow-x-hidden"

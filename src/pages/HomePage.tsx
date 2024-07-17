@@ -1,3 +1,5 @@
+import AboutUs from "@/components/AboutUs"
+import ContactDetails from "@/components/ContactDetails"
 import OurService from "@/components/OurService"
 import Testimonials from "@/components/Testimonials"
 
@@ -8,6 +10,8 @@ function HomePage() {
         <div className="w w-full flex flex-col">
             <OurService />
             <Testimonials />
+            <AboutUs />
+            <ContactDetails />
         </div>
     )
 }
