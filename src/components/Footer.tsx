@@ -94,7 +94,8 @@ const Footer = () => {
                 <div className="text-center mt-8">
                     <div className="flex justify-center space-x-4 mb-6">
                         <a href="#" className="text-gray-300 hover:text-blue-600"><FaFacebookF className="text-xl" /></a>
-                        <a href="#" className="text-gray-300 hover:text-blue-300"><FaYoutube className="text-xl" /></a>
+                        <a href="#" className="text-gray-300 hover:text-red-6
+                            00"><FaYoutube className="text-xl" /></a>
                         <a href="#" className="text-gray-300 hover:text-pink-600"><FaInstagram className="text-xl" /></a>
                         <a href="#" className="text-gray-300 hover:text-blue-600"><FaTiktok className="text-xl" /></a>
                     </div>
