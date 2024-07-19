@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import { FaLeaf, FaBars, FaTimes } from 'react-icons/fa';
 import gsap from 'gsap';
+import { MdArrowBack } from 'react-icons/md';
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -91,6 +92,7 @@ const Header: React.FC = () => {
                     whileTap={{ scale: 0.9 }}
                 >
                     <button
+                        type='button'
                         onClick={() => setIsOpen(!isOpen)}
                         className="text-violet-700 focus:outline-none"
                     >
@@ -129,6 +131,8 @@ const Header: React.FC = () => {
                 >
                     Get a Quote
                 </motion.button>
+
+                <h2 onClick={() => setIsOpen(!isOpen)} className='flex gap-2 text-violet-600'>Go Back   <MdArrowBack size={24} /></h2>
             </motion.nav>
         </motion.header>
     );
