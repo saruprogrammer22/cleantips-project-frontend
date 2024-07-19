@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import ReactPaginate from 'react-paginate';
-import { FaHome, FaTrashAlt, FaRecycle, FaSprayCan, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaHome, FaSprayCan, FaArrowLeft, FaArrowRight, FaTrashAlt, FaRecycle, FaMicroblog } from 'react-icons/fa';
+import { gsap } from 'gsap';
+
 
 const blogItems = [
     {
@@ -9,7 +12,7 @@ const blogItems = [
         date: "July 20, 2024",
         description: "Discover effective ways to keep your home clean while being eco-conscious. Our tips include natural cleaning solutions and sustainable practices.",
         imageUrl: "https://via.placeholder.com/400x250?text=Eco-Friendly+Cleaning",
-        icon: <FaRecycle className="text-4xl text-green-500" />,
+        icon: <FaRecycle className="text-4xl text-violet-500" />,
     },
     {
         title: "The Ultimate Guide to Decluttering Your Space",
@@ -90,22 +93,33 @@ const blogItems = [
     },
 
 ];
-
 const itemsPerPage = 4;
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5,
-        },
-    },
-};
 
 const OurBlog: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
+    const controls = useAnimation();
+    const ourBlogRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (ourBlogRef.current) {
+            gsap.fromTo(
+                ourBlogRef.current.children,
+                { scale: 0.4, opacity: 0 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    stagger: 0.1,
+                    duration: 0.8,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: ourBlogRef.current,
+                        start: 'top 80%',
+                    },
+                }
+            );
+        }
+
+    }, [controls, currentPage]);
 
     const handlePageClick = (data: { selected: number }) => {
         setCurrentPage(data.selected);
@@ -115,43 +129,36 @@ const OurBlog: React.FC = () => {
     const currentPageData = blogItems.slice(offset, offset + itemsPerPage);
 
     return (
-        <div className="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+        <div className="bg-gradient-to-r from-gray-50 to-slate-50 py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+
+            <div className="max-w-7xl mx-auto relative z-10">
                 <motion.h2
-                    className="text-4xl font-bold text-center mb-12 text-violet-700 items-center gap-3 flex flex-col"
-                    variants={itemVariants}
+                    className="text-4xl font-bold text-center mb-12 text-violet-600 flex items-center justify-center gap-3 flex-col"
                 >
                     <span className='w-44 border-2 border-violet-600'></span>
-                    <h2 className="text-5xl font-bold mb-4">Our Blogs</h2>
+                    <div className='flex'>
+                        <FaMicroblog className="text-4xl" />
+                        <span>Our Latest Blog</span>
+                        <FaMicroblog className="text-4xl" />
+                    </div>
                 </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                    className="text-lg text-center text-violet-500 mb-12"
-                >
-                    Stay updated with our latest tips and insights on home cleaning services. Explore our blog for practical advice and inspiration.
-                </motion.p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div ref={ourBlogRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {currentPageData.map((item, index) => (
                         <motion.div
+
                             key={index}
-                            className="bg-white rounded-lg shadow-lg overflow-hidden"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2, duration: 0.5 }}
+                            custom={index}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={controls}
+                            className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300"
                         >
                             <img src={item.imageUrl} alt={item.title} className="w-full h-48 object-cover" />
                             <div className="p-6">
                                 <div className="flex items-center mb-4">
                                     {item.icon}
-                                    <div className="ml-3">
-                                        <h3 className="text-xl font-semibold text-violet-700">{item.title}</h3>
-                                        <p className="text-sm text-gray-500">{item.date}</p>
-                                    </div>
+                                    <h3 className="text-xl font-semibold text-violet-700 ml-2">{item.title}</h3>
                                 </div>
+                                <p className="text-gray-600 text-sm mb-4">{item.date}</p>
                                 <p className="text-gray-700">{item.description}</p>
                             </div>
                         </motion.div>
@@ -161,16 +168,13 @@ const OurBlog: React.FC = () => {
                     previousLabel={<FaArrowLeft />}
                     nextLabel={<FaArrowRight />}
                     breakLabel="..."
-                    breakClassName="break-me"
                     pageCount={Math.ceil(blogItems.length / itemsPerPage)}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
                     onPageChange={handlePageClick}
                     containerClassName="flex justify-center items-center space-x-4 mt-8"
-                    pageClassName="px-4 py-2 bg-white border rounded"
+                    pageClassName="px-4 py-2 bg-white rounded-full shadow transition duration-300 hover:bg-violet-50"
                     activeClassName="bg-violet-500 text-white"
-                    previousClassName="px-4 py-2 bg-white border rounded"
-                    nextClassName="px-4 py-2 bg-white border rounded"
+                    previousClassName="px-4 py-2 bg-white rounded-full shadow transition duration-300 hover:bg-violet-50"
+                    nextClassName="px-4 py-2 bg-white rounded-full shadow transition duration-300 hover:bg-violet-50"
                     disabledClassName="opacity-50 cursor-not-allowed"
                 />
             </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion, useAnimation, useInView } from 'framer-motion';
-import { FaQuoteLeft, FaStar, FaBroom, FaSprayCan, FaWind, FaUserCircle } from 'react-icons/fa';
+import { FaQuoteLeft, FaStar, FaBroom, FaSprayCan, FaWind, FaUserCircle, FaCommentDots } from 'react-icons/fa';
 
 const testimonials = [
     {
@@ -73,7 +73,7 @@ const Testimonial: React.FC = () => {
     };
 
     return (
-        <section className="py-16 bg-gradient-to-br from-gray-100 to-violet-100 overflow-hidden">
+        <section className="py-16 bg-gradient-to-br from-gray-100 to-slate-100 overflow-hidden">
             <motion.div
                 ref={ref}
                 className="container mx-auto px-4"
@@ -82,11 +82,14 @@ const Testimonial: React.FC = () => {
                 animate={controls}
             >
                 <motion.h2
-                    className="text-4xl font-bold text-center mb-12 text-violet-700 items-center gap-3 flex flex-col"
-                    variants={itemVariants}
+                    className="text-4xl font-bold text-center mb-12 text-violet-600 flex items-center justify-center gap-3 flex-col"
                 >
                     <span className='w-44 border-2 border-violet-600'></span>
-                    <span>What Our Clients Say</span>
+                    <div className='flex gap-2'>
+                        <FaCommentDots className="text-4xl" />
+                        <span className='text-4xl'>What Our Client Say</span>
+                        <FaCommentDots className="text-4xl" />
+                    </div>
                 </motion.h2>
                 <motion.div
                     className="flex overflow-x-hidden"

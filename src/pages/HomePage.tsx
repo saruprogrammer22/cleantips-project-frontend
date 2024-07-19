@@ -11,10 +11,10 @@ function HomePage() {
     return (
         <div className="w w-full flex flex-col">
             <OurService />
+            <Gallery />
+            <OurBlog />
             <Testimonials />
             <AboutUs />
-            <OurBlog />
-            <Gallery />
             <ContactDetails />
         </div>
     )

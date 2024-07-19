@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { FaYoutube, FaTiktok, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { MdTouchApp } from 'react-icons/md';
 
 const ContactDetails: React.FC = () => {
 
@@ -20,24 +21,17 @@ const ContactDetails: React.FC = () => {
         <div className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
-                    className="text-4xl font-bold text-center mb-12 text-violet-700 items-center gap-3 flex flex-col"
-                    variants={cardVariants}
-                    initial={{ opacity: 0, y: 100 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
+                    className="text-4xl font-bold text-center mb-12 text-violet-600 flex items-center justify-center gap-3 flex-col"
                 >
                     <span className='w-44 border-2 border-violet-600'></span>
-                    <h2 className="text-5xl font-bold mb-4">Get in touch</h2>
+                    <div className='flex'>
+                        <MdTouchApp className="text-4xl" />
+                        <h2 className="text-4xl font-bold mb-4">Get in touch</h2>
+                        <MdTouchApp className="text-4xl" />
+                    </div>
+                    <p className="text-xl"> If you still have any questions, please contact us at our request.</p>
                 </motion.h2>
-                <motion.p
-                    variants={cardVariants}
-                    initial={{ opacity: 0, y: 100 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-xl text-center text-violet-600 mb-12"
-                >
-                    If you still have any questions, please contact us at our request.
-                </motion.p>
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <motion.div
                         variants={cardVariants}

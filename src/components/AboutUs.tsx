@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaCertificate, FaMoneyBillWave, FaClock, FaUserTie } from 'react-icons/fa';
 import ImageCollage from './ImageCollage';
+import { MdContactSupport } from 'react-icons/md';
 
 const AboutUs: React.FC = () => {
     const { scrollYProgress } = useScroll();
@@ -30,32 +31,21 @@ const AboutUs: React.FC = () => {
     ];
 
 
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.5,
-            },
-        },
-    };
-
-
     return (
-        <section className="py-24 relative overflow-hidden">
+        <section className="py-24 from-gray-100 to-slate-100 relative overflow-hidden">
             <motion.h2
-                className="text-4xl font-bold text-center mb-12 text-violet-700 items-center gap-3 flex flex-col"
-                variants={itemVariants}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                className="text-4xl font-bold text-center mb-12 text-violet-600 flex items-center justify-center gap-3 flex-col"
             >
                 <span className='w-44 border-2 border-violet-600'></span>
-                <h2 className="text-5xl font-bold mb-4">About Our Cleaning Services</h2>
+                <div className='flex'>
+                    <MdContactSupport className="text-4xl" />
+                    <h2 className="text-4xl font-bold mb-4">About Our Cleaning Services</h2>
+                    <MdContactSupport className="text-4xl" />
+                </div>
                 <p className="text-xl">Exceptional cleaning tailored to your needs</p>
             </motion.h2>
+
+
             <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600"
                 style={{ y: backgroundY }}

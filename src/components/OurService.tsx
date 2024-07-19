@@ -2,6 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import homeclean from '../assets/asd1.jpg';
 import airclean from '../assets/asd.jpg';
+import { MdOutlineMiscellaneousServices } from "react-icons/md";
+
+
+
 
 const OurService: React.FC = () => {
     const services = [
@@ -41,7 +45,7 @@ const OurService: React.FC = () => {
 
     return (
         <motion.section
-            className="py-16 bg-gray-50"
+            className="py-16 bg-gradient-to-r from-gray-100 to-slate-100"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
@@ -49,17 +53,20 @@ const OurService: React.FC = () => {
         >
             <div className="container mx-auto px-4">
                 <motion.h2
-                    className="text-4xl font-bold text-center mb-12 text-violet-700 items-center gap-3 flex flex-col"
-                    variants={itemVariants}
+                    className="text-4xl font-bold text-center mb-12 text-violet-600 flex items-center justify-center gap-3 flex-col"
                 >
                     <span className='w-44 border-2 border-violet-600'></span>
-                    <span>Our Services</span>
+                    <div className='flex gap-2'>
+                        <MdOutlineMiscellaneousServices className="text-3xl" />
+                        <span className='text-4xl'>Our Service</span>
+                        <MdOutlineMiscellaneousServices className="text-4xl" />
+                    </div>
                 </motion.h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {services.map((service, index) => (
                         <motion.div
                             key={index}
-                            className="bg-white rounded-xl shadow-lg overflow-hidden"
+                            className="bg-white rounded-xl shadow-lg overflow-hidden group"
                             variants={itemVariants}
                             whileHover={{ y: -10 }}
                             transition={{ type: 'spring', stiffness: 300 }}
@@ -68,14 +75,13 @@ const OurService: React.FC = () => {
                                 <motion.img
                                     src={service.image}
                                     alt={service.title}
-                                    className="w-full h-full object-cover"
-                                    whileHover={{ scale: 1.1 }}
-                                    transition={{ duration: 0.3 }}
+                                    className="w-full h-full object-cover transition duration-300 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70" />
-                                <h3 className="absolute bottom-4 left-4 text-2xl font-semibold text-white">
-                                    {service.title}
-                                </h3>
+                                <div className="absolute inset-0 bg-violet-900 bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center">
+                                    <h3 className="text-3xl font-semibold text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300">
+                                        {service.title}
+                                    </h3>
+                                </div>
                             </div>
                             <div className="p-6">
                                 <p className="text-gray-600 mb-6">{service.description}</p>
