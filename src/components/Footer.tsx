@@ -27,7 +27,7 @@ const Footer = () => {
                         transition={{ duration: 0.6 }}>
                         <h2 className="text-xl font-semibold mb-4 text-violet-600">About Us</h2>
                         <p className="text-gray-600">
-                            Founded in 2019, Anytime Cleaners offers top-notch cleaning services across the Philippines.
+                            Founded in 2023, Clean Tips offers top-notch cleaning services across the Philippines.
                         </p>
                     </motion.div>
 
@@ -54,8 +54,8 @@ const Footer = () => {
                         <h2 className="text-xl font-semibold mb-4 text-violet-600">Latest Posts</h2>
                         <ul className="space-y-2">
                             {[
-                                { title: 'Why is it Important to Keep your Space Clean and Safe?', date: 'November 15, 2021' },
-                                { title: 'Hiring a Professional Cleaning Service', date: 'November 15, 2021' }
+                                { title: 'Why is it Important to Keep your Space Clean and Safe?', date: 'July 09, 2004' },
+                                { title: 'Hiring a Professional Cleaning Service', date: 'July 09, 2004' }
                             ].map(post => (
                                 <li key={post.title}><a href="#" className="hover:text-violet-300">{post.title}<br /><span className="text-sm text-gray-600">{post.date}</span></a></li>
                             ))}
@@ -72,15 +72,15 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li className="flex items-center mb-2">
                                 <FaLocationArrow className="mr-2 text-xl text-violet-600" />
-                                <span>469 Dr. Sixto Antonio Avenue, Maybunga, Pasig City 1607 Pasig, Philippines</span>
+                                <span>469 Address Avenue, Novaliches, Quezon City 1117 Quezon city, Philippines</span>
                             </li>
                             <li className="flex items-center mb-2">
                                 <FaPhoneAlt className="mr-2 text-xl text-violet-600" />
-                                <span>09633262747</span>
+                                <span>09424242442</span>
                             </li>
                             <li className="flex items-center mb-2">
                                 <FaEnvelope className="mr-2 text-xl text-violet-600" />
-                                <span>inquiries@anytimecleaners.ph</span>
+                                <span>cleantips@gmail.com.ph</span>
                             </li>
                             <li className="flex items-center">
                                 <FaClock className="mr-2 text-xl text-violet-600" />
@@ -100,7 +100,7 @@ const Footer = () => {
                         <a href="#" className="text-gray-300 hover:text-blue-600"><FaTiktok className="text-xl" /></a>
                     </div>
                     <p className="text-gray-600 text-sm">
-                        &copy; {new Date().getFullYear()} Anytime Cleaners. All Rights Reserved.
+                        &copy; {new Date().getFullYear()} Clean Tips. All Rights Reserved.
                     </p>
                 </div>
             </div>

@@ -43,9 +43,9 @@ const ContactDetails: React.FC = () => {
                         <FaPhone className="text-5xl text-blue-500 mb-6 mx-auto" />
                         <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">Phone</h3>
                         <p className="text-gray-600 text-center">
-                            8 800 884 2234
+                            +63 9424 442 4242
                             <br />
-                            8 800 563 2240
+                            +63 9323 323 3232
                         </p>
                     </motion.div>
                     <motion.div
@@ -69,11 +69,12 @@ const ContactDetails: React.FC = () => {
                         <FaMapMarkerAlt className="text-5xl text-red-500 mb-6 mx-auto" />
                         <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">Address</h3>
                         <p className="text-gray-600 text-center">
-                            Patricia C. Amedee
+                            Person C. FullName
                             <br />
-                            4401 Waldeck Street
+                            469 Address Street
                             <br />
-                            Grapevine Nashville, TX 76051
+                            Novaliches, 1117 Quezon City
+                            <br />
                         </p>
                     </motion.div>
                 </div>
