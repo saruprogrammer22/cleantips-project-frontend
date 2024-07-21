@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link, useLocation } from 'react-router-dom';
+import BookingFormSubmit from '@/components/BookingFormSubmit';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,7 +103,7 @@ function OurServicesPage() {
                                     <p className="text-gray-600 text-sm mb-4">Professional cleaning for your home or office</p>
                                     <div className="flex items-center text-violet-500">
                                         <FaCheck className="mr-2" />
-                                        <span>Book Now</span>
+                                        <BookingFormSubmit styleButton='bg-white text-violet px-0 text-1xl hover:bg-white bg-whileTap' title='Book now' />
                                     </div>
                                 </div>
                             </motion.div>

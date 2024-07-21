@@ -26,11 +26,10 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { motion } from 'framer-motion';
-import { FaHandSparkles } from 'react-icons/fa';
 
 const formSchema = z.object({
     name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-    phone: z.string().regex(/^\d{10}$/, { message: 'Invalid phone number.' }),
+    phone: z.string().regex(/^\d{11}$/, { message: 'Invalid phone number.' }),
     email: z.string().email({ message: 'Invalid email address.' }),
     date: z.date({
         required_error: 'Please select a date.',
@@ -45,7 +44,12 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const BookingForm: React.FC = () => {
+type Props = {
+    title?: string;
+    styleButton?: string;
+}
+
+const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
     const {
@@ -78,9 +82,9 @@ const BookingForm: React.FC = () => {
                 <DialogTrigger asChild>
                     <motion.div whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}>
-                        <Button className="px-10 py-6 bg-transparent bg-violet-600 text-white font-semibold rounded-full flex items-center justify-center gap-2 hover:bg-violet-600 hover:text-black transition duration-300"
+                        <Button className={styleButton ? styleButton : "px-10 py-6 bg-transparent bg-violet-600 text-white font-semibold rounded-full flex items-center justify-center gap-2 hover:bg-violet-600 hover:text-black transition duration-300"}
                         >
-                            <FaHandSparkles /> Book A Clean
+                            {title}
                         </Button>
                     </motion.div>
                 </DialogTrigger>
@@ -116,7 +120,7 @@ const BookingForm: React.FC = () => {
                                     id="phone"
                                     className="mt-1"
                                     {...register('phone')}
-                                    placeholder="1234567890"
+                                    placeholder="09xxx xxx xxx"
                                 />
                                 {errors.phone && (
                                     <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>

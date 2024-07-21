@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Slider } from "@/components/ui/slider";
 import { FaHome, FaBuilding, FaTools } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
+import BookingFormSubmit from '@/components/BookingFormSubmit';
 
 const CostCalculatorPage = () => {
     const [area, setArea] = useState(35);
@@ -89,14 +90,9 @@ const CostCalculatorPage = () => {
                         <span className="text-4xl font-bold">₱{calculateCost()}</span>
                     </motion.div>
 
-                    <motion.button
-                        className="w-full bg-violet-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-violet-700 transition-colors"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        Book Now
-                    </motion.button>
-
+                    <div className='flex justify-center'>
+                        <BookingFormSubmit title='Book a schedule now!' />
+                    </div>
                     <p className="text-xs text-gray-500 text-center">
                         Prices include 12% VAT. Large areas may qualify for discounts.
                     </p>

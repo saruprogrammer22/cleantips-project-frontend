@@ -4,6 +4,8 @@ import { useInView } from 'react-intersection-observer';
 import { FaHome, FaMapMarkerAlt, FaBroom, FaCalendarCheck } from 'react-icons/fa';
 
 import test from '../assets/aircon.jpg'
+import BookingFormSubmit from './BookingFormSubmit';
+import { Link } from 'react-router-dom';
 
 const WhatMakeUsDifferent: React.FC = () => {
     const controls = useAnimation();
@@ -63,23 +65,25 @@ const WhatMakeUsDifferent: React.FC = () => {
                     ))}
                 </div>
                 <div className="lg:w-1/3 mt-8 lg:mt-0">
-                    <motion.div
-                        className="bg-white p-6 rounded-lg shadow-lg"
-                        initial="hidden"
-                        animate={controls}
-                        variants={{
-                            visible: { opacity: 1, x: 0 },
-                            hidden: { opacity: 0, x: 50 }
-                        }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                    >
-                        <h3 className="text-2xl font-semibold mb-4 text-violet-800">Cost Calculator</h3>
-                        <img alt='' src={test} className='object-cover max-h-40 w-full' />
-                        <p className="text-gray-600 mb-4">Estimate your cleaning cost.</p>
-                        <button className="bg-violet-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-violet-600 transition-colors duration-300">
-                            Learn more
-                        </button>
-                    </motion.div>
+                    <Link to="/cost-calculator">
+                        <motion.div
+                            className="bg-white p-6 rounded-lg shadow-lg"
+                            initial="hidden"
+                            animate={controls}
+                            variants={{
+                                visible: { opacity: 1, x: 0 },
+                                hidden: { opacity: 0, x: 50 }
+                            }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                        >
+                            <h3 className="text-2xl font-semibold mb-4 text-violet-800">Cost Calculator</h3>
+                            <img alt='' src={test} className='object-cover max-h-40 w-full' />
+                            <p className="text-gray-600 mb-4">Estimate your cleaning cost.</p>
+                            <button className="bg-violet-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-violet-600 transition-colors duration-300">
+                                Learn more
+                            </button>
+                        </motion.div>
+                    </Link>
                     <motion.div
                         className="bg-white p-6 rounded-lg shadow-lg mt-6"
                         initial="hidden"
@@ -109,9 +113,7 @@ const WhatMakeUsDifferent: React.FC = () => {
                 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
             >
-                <button className="bg-violet-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-violet-600 transition-colors duration-300 text-lg">
-                    BOOK US NOW!
-                </button>
+                <BookingFormSubmit title='BOOK US NOW!' styleButton="bg-violet-500 text-white px-8 py-8 rounded-full font-semibold hover:bg-violet-600 transition-colors duration-300 text-lg " />
             </motion.div>
         </div>
     );

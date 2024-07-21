@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import homeclean from '../assets/asd1.jpg';
 import airclean from '../assets/asd.jpg';
 import { MdOutlineMiscellaneousServices } from "react-icons/md";
-
-
+import BookingFormSubmit from './BookingFormSubmit';
 
 
 const OurService: React.FC = () => {
@@ -85,14 +84,7 @@ const OurService: React.FC = () => {
                             </div>
                             <div className="p-6">
                                 <p className="text-gray-600 mb-6">{service.description}</p>
-                                <motion.button
-                                    className="w-full bg-violet-600 text-white py-3 px-6 rounded-lg font-semibold text-lg"
-                                    whileHover={{ scale: 1.05, backgroundColor: '#6D28D9' }}
-                                    whileTap={{ scale: 0.95 }}
-                                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                                >
-                                    Book Now
-                                </motion.button>
+                                <BookingFormSubmit title='Book now' styleButton='w-full bg-violet-600 hover:bg-violet-800 h-14 text-1xl' />
                             </div>
                         </motion.div>
                     ))}

@@ -6,6 +6,7 @@ import ReactPaginate from 'react-paginate';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import BookingFormSubmit from './BookingFormSubmit';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,7 +86,7 @@ const Gallery: React.FC = () => {
                         <motion.div
                             key={index}
                             whileHover={{ y: -10 }}
-                            className="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl"
+                            className="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl group"
                         >
                             <img src={image} alt={`Cleaning Service ${index + 1}`} className="w-full h-48 object-cover" />
                             <div className="p-4">
@@ -93,7 +94,7 @@ const Gallery: React.FC = () => {
                                 <p className="text-gray-600 text-sm mb-4">Professional cleaning for your home or office</p>
                                 <div className="flex items-center text-violet-500">
                                     <FaCheck className="mr-2" />
-                                    <span>Book Now</span>
+                                    <BookingFormSubmit styleButton='bg-white text-violet px-0 text-1xl hover:bg-white' title='Book now' />
                                 </div>
                             </div>
                         </motion.div>
