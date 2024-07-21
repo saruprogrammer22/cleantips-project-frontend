@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCalendarAlt, FaHandSparkles } from 'react-icons/fa';
+import { FaCalendarAlt } from 'react-icons/fa';
 import hero from '../assets/hero.jpg';
 import clean from '../assets/clean.png';
+import { Link } from 'react-router-dom';
+import BookingFormSubmit from './BookingFormSubmit';
 
 const Hero: React.FC = () => {
     const containerVariants = {
@@ -61,20 +63,16 @@ const Hero: React.FC = () => {
                         className="flex flex-col sm:flex-row gap-4"
                         variants={itemVariants}
                     >
-                        <motion.button
-                            className="px-8 py-3 bg-violet-600 text-white font-semibold rounded-full flex items-center justify-center gap-2 hover:bg-violet-700 transition duration-300"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <FaHandSparkles /> Book a Clean
-                        </motion.button>
-                        <motion.button
-                            className="px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-full flex items-center justify-center gap-2 hover:bg-white hover:text-violet-600 transition duration-300"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <FaCalendarAlt /> Our Services
-                        </motion.button>
+                        <BookingFormSubmit />
+                        <Link to={"/services"}>
+                            <motion.button
+                                className="px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-full flex items-center justify-center gap-2 hover:bg-white hover:text-violet-600 transition duration-300"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <FaCalendarAlt /> Our Services
+                            </motion.button>
+                        </Link>
                     </motion.div>
                 </div>
             </div>
