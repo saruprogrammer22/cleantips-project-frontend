@@ -54,7 +54,7 @@ const CostCalculatorPage = () => {
                             value={[area]}
                             onValueChange={(value) => setArea(value[0])}
                             max={100}
-                            min={20}
+                            min={35}
                             step={1}
                             className="w-full"
                         />
