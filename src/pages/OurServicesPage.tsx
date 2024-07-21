@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaArrowLeft, FaArrowRight, FaHandSparkles, FaCheck } from 'react-icons/fa';
 import ReactPaginate from 'react-paginate';
 import { motion } from 'framer-motion';
