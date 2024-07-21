@@ -60,9 +60,9 @@ const AboutUs: React.FC = () => {
                 >
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="p-12">
-                            <h3 className="text-3xl font-bold mb-6 text-indigo-900">Our Commitment</h3>
+                            <h3 className="text-3xl font-bold mb-6 text-violet-800">Our Commitment</h3>
                             <p className="text-lg mb-8 text-gray-700">
-                                Our professional and experienced cleaning staff does the job right the first time, giving you confidence that your home or office will always look its best.
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae eos minus officiis eaque et exercitationem labore unde necessitatibus. numquam ipsam eligendi porro voluptatem cumque, asperiores, aut adipisci molestias sit libero.
                             </p>
                             <motion.button
                                 className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
