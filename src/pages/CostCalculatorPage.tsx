@@ -32,9 +32,9 @@ const CostCalculatorPage = () => {
 
     return (
         <div className='flex flex-col py-20 h-full'>
-            <div className="h-20 w-full bg-slate-200 rounded-lg flex justify-between items-center md:px-20 px-5 ">
+            <div className="h-20 w-full bg-slate-200 rounded-lg flex justify-between items-center md:px-20 px-5 gap-3">
                 <h2 className='text-2xl md:text-4xl font-bold'>Cost Calculator</h2>
-                <div className='flex'>
+                <div className='flex flex-col'>
                     <Link to={"/"} className="text text-violet-600 mr-4 hover:underline">Home </Link>
                     <span className="text text-gray-600">{`>`} Cost Calculator</span>
                 </div>
@@ -44,7 +44,7 @@ const CostCalculatorPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6"
+                    className="w-full max-w-md bg-white rounded-2xl shadow-xl p-4 md:p-8  space-y-6"
                 >
                     <h2 className="text-3xl font-bold text-center text-gray-800">Cost Calculator</h2>
 
@@ -61,7 +61,7 @@ const CostCalculatorPage = () => {
                         <div className="text-center text-2xl font-bold text-violet-600">{area} m²</div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-2 md:gap-4">
                         {['residential', 'commercial', 'post-construction'].map((service) => (
                             <motion.button
                                 key={service}

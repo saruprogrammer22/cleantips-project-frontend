@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
-import { motion, } from 'framer-motion';
-import { gsap } from 'gsap';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
 import { Link, useLocation } from 'react-router-dom';
-import Slider1 from '@/components/Slider1';
+import ImageSlider from '@/components/ImageSlider';
 
 const images = [
     "https://via.placeholder.com/400x250?text=Project+1",
@@ -24,8 +24,10 @@ const images = [
     "https://via.placeholder.com/400x250?text=Project+17",
     "https://via.placeholder.com/400x250?text=Project+18",
 ];
+
 function GalleryPage() {
     const galleryRef = useRef<HTMLDivElement>(null);
+    const location = useLocation();
 
     useEffect(() => {
         if (galleryRef.current) {
@@ -39,24 +41,22 @@ function GalleryPage() {
         }
     }, []);
 
-    {/*Automatic Scroll up whenever it clicks */ }
-    const location = useLocation();
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
     return (
         <div className='flex flex-col py-20 h-full'>
-
             <div className="h-20 w-full bg-slate-200 rounded-lg flex justify-between items-center md:px-20 px-5 ">
                 <h2 className='text-2xl md:text-4xl font-bold'>Gallery</h2>
                 <div className='flex'>
-                    <Link to={"/"} className="text text-blue-600 mr-4 hover:underline">Home </Link>
+                    <Link to="/" className="text text-blue-600 mr-4 hover:underline">Home </Link>
                     <span className="text text-gray-600">{`>`} Gallery</span>
                 </div>
             </div>
-            <Slider1 />
+
+            <ImageSlider />
+
             <div ref={galleryRef} className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 p-4 ">
                 {images.map((image, index) => (
                     <motion.div
@@ -68,14 +68,15 @@ function GalleryPage() {
                     >
                         <img
                             src={image}
-                            alt={image}
+                            alt={`Project ${index + 1}`}
                             className="w-full rounded-lg cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                            loading="lazy"
                         />
                     </motion.div>
                 ))}
             </div>
         </div>
-    )
+    );
 }
 
-export default GalleryPage
+export default GalleryPage;

@@ -59,7 +59,7 @@ const Header: React.FC = () => {
         >
             <div className="container mx-auto flex justify-between items-center">
                 <Link to="/" className={`flex items-center space-x-2`}>
-                    <FaChair className={`${header ? "block" : "hidden"}  text-3xl md:flex ${header ? "text-violet-500" : "md:text-violet-600"}`} />
+                    <FaChair className={`${header ? "block" : "text-violet-500"}  text-3xl md:flex ${header ? "text-violet-500" : "md:text-violet-600"}`} />
                     <span className="logo-text text-2xl font-bold text-violet-700"></span>
                     <h4 className={`hidden   md:flex text-3xl font-bold ${header ? "text-violet-500" : "text-violet-500"}`}>Clean Tips</h4>
                 </Link>
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
                 </nav>
 
                 <motion.div
-                    className={`${header ? "flex" : "hidden"} md:hidden`}
+                    className={`${header ? "flex" : ""} md:hidden`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                 >
@@ -131,13 +131,16 @@ const Header: React.FC = () => {
                         </Link>
                     </motion.div>
                 ))}
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-violet-500 hover:bg-violet-400 text-white font-bold py-2 px-6 rounded-md text-xl transition duration-300"
-                >
-                    Get a Quote
-                </motion.button>
+                <Link to={"/cost-calculator"}>
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="bg-violet-500 hover:bg-violet-400 text-white font-bold py-2 px-6 rounded-md text-xl transition duration-300"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        Get a Quote
+                    </motion.button>
+                </Link>
 
                 <h2 onClick={() => setIsOpen(!isOpen)} className='flex gap-2 text-violet-600'>Go Back   <MdArrowBack size={24} /></h2>
             </motion.nav>

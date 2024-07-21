@@ -1,6 +1,4 @@
-
-
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaArrowLeft, FaArrowRight, FaHandSparkles, FaCheck } from 'react-icons/fa';
 import ReactPaginate from 'react-paginate';
 import { motion } from 'framer-motion';
@@ -32,10 +30,11 @@ const images = [
     "https://via.placeholder.com/400x250?text=Project+17",
     "https://via.placeholder.com/400x250?text=Project+18",
 ];
-function OurServicesPage() {
 
+function OurServicesPage() {
     const [currentPage, setCurrentPage] = useState(0);
     const galleryRef = useRef<HTMLDivElement>(null);
+    const location = useLocation();
 
     useEffect(() => {
         if (galleryRef.current) {
@@ -57,6 +56,10 @@ function OurServicesPage() {
         }
     }, [currentPage]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     const handlePageClick = (data: { selected: number }) => {
         setCurrentPage(data.selected);
     };
@@ -64,30 +67,18 @@ function OurServicesPage() {
     const offset = currentPage * itemsPerPage;
     const currentPageData = images.slice(offset, offset + itemsPerPage);
 
-
-    {/*Automatic Scroll up whenever it clicks */ }
-    const location = useLocation();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location.pathname]);
-
-
     return (
         <div className="w-full h-full flex flex-col py-20">
             <div className="h-20 w-full bg-slate-200 rounded-lg flex justify-between items-center md:px-20 px-5 ">
                 <h2 className='text-2xl md:text-4xl font-bold'>Services</h2>
                 <div className='flex'>
-                    <Link to={"/"} className="text text-blue-600 mr-4 hover:underline">Home </Link>
+                    <Link to="/" className="text text-blue-600 mr-4 hover:underline">Home </Link>
                     <span className="text text-gray-600">{`>`} Our Services</span>
                 </div>
             </div>
 
-
-
             <div className="bg-gradient-to-b from-gray-50 to-slate-100 py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
-
                     <motion.h2
                         className="text-4xl font-bold text-center mb-12 text-violet-600 flex items-center justify-center gap-3 flex-col"
                     >
@@ -101,13 +92,13 @@ function OurServicesPage() {
                     <div ref={galleryRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {currentPageData.map((image, index) => (
                             <motion.div
-                                key={index}
+                                key={offset + index}
                                 whileHover={{ y: -10 }}
                                 className="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl"
                             >
-                                <img src={image} alt={`Cleaning Service ${index + 1}`} className="w-full h-48 object-cover" />
+                                <img src={image} alt={`Cleaning Service ${offset + index + 1}`} className="w-full h-48 object-cover" loading="lazy" />
                                 <div className="p-4">
-                                    <h3 className="text-lg font-semibold text-violet-700 mb-2">Cleaning Service {index + 1}</h3>
+                                    <h3 className="text-lg font-semibold text-violet-700 mb-2">Cleaning Service {offset + index + 1}</h3>
                                     <p className="text-gray-600 text-sm mb-4">Professional cleaning for your home or office</p>
                                     <div className="flex items-center text-violet-500">
                                         <FaCheck className="mr-2" />
@@ -133,7 +124,7 @@ function OurServicesPage() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default OurServicesPage
+export default OurServicesPage;

@@ -52,7 +52,7 @@ const ContactPage: React.FC = () => {
                 <h2 className='text-2xl md:text-4xl font-bold'>Contact</h2>
                 <div className='flex'>
                     <Link to={"/"} className="text text-blue-600 mr-4 hover:underline">Home </Link>
-                    <span className="text text-gray-600">{`>`} About Us</span>
+                    <span className="text text-gray-600">{`>`} Contact Us</span>
                 </div>
             </div>
 
