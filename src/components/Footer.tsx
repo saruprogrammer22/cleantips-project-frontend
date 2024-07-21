@@ -27,7 +27,7 @@ const Footer = () => {
                         transition={{ duration: 0.6 }}>
                         <h2 className="text-xl font-semibold mb-4 text-violet-600">About Us</h2>
                         <p className="text-gray-600">
-                            Founded in 2023, Clean Tips offers top-notch cleaning services across the Philippines.
+                            Founded in 2024, Clean Tips offers top-notch cleaning services across the Philippines.
                         </p>
                     </motion.div>
 
@@ -54,8 +54,8 @@ const Footer = () => {
                         <h2 className="text-xl font-semibold mb-4 text-violet-600">Latest Posts</h2>
                         <ul className="space-y-2">
                             {[
-                                { title: 'Why is it Important to Keep your Space Clean and Safe?', date: 'July 09, 2004' },
-                                { title: 'Hiring a Professional Cleaning Service', date: 'July 09, 2004' }
+                                { title: 'Why is it Important to Keep your Space Clean and Safe?', date: 'July 09, 2024' },
+                                { title: 'Hiring a Professional Cleaning Service', date: 'July 09, 2024' }
                             ].map(post => (
                                 <li key={post.title}><a href="#" className="hover:text-violet-300">{post.title}<br /><span className="text-sm text-gray-600">{post.date}</span></a></li>
                             ))}
@@ -100,7 +100,7 @@ const Footer = () => {
                         <a href="#" className="text-gray-300 hover:text-blue-600"><FaTiktok className="text-xl" /></a>
                     </div>
                     <p className="text-gray-600 text-sm">
-                        &copy; {new Date().getFullYear()} Clean Tips. All Rights Reserved.
+                        &copy; {new Date().getFullYear()} <span className='text-gray-300'>"CleanTips Service PH"</span>. All Rights Reserved. by <span className='text-rose-600'>JosephDatDev22</span>
                     </p>
                 </div>
             </div>

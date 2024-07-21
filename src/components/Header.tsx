@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
-import { FaLeaf, FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChair } from 'react-icons/fa';
 import gsap from 'gsap';
 import { MdArrowBack } from 'react-icons/md';
 
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 40) {
+            if (window.scrollY > 60) {
                 setHeader(true);
             } else {
                 setHeader(false);
@@ -50,6 +50,8 @@ const Header: React.FC = () => {
         { name: 'Contact', path: '/contact' },
     ];
 
+
+
     return (
         <motion.header
             style={{ backgroundColor }}
@@ -57,12 +59,13 @@ const Header: React.FC = () => {
         >
             <div className="container mx-auto flex justify-between items-center">
                 <Link to="/" className={`flex items-center space-x-2`}>
-                    <FaLeaf className={`${header ? "block" : "hidden"}  text-3xl md:flex ${header ? "text-violet-500" : "md:text-white"}`} />
+                    <FaChair className={`${header ? "block" : "hidden"}  text-3xl md:flex ${header ? "text-violet-500" : "md:text-violet-600"}`} />
                     <span className="logo-text text-2xl font-bold text-violet-700"></span>
-                    <h4 className={`hidden   md:flex text-3xl font-bold ${header ? "text-violet-500" : "text-white"}`}>Clean Tips</h4>
+                    <h4 className={`hidden   md:flex text-3xl font-bold ${header ? "text-violet-500" : "text-violet-500"}`}>Clean Tips</h4>
                 </Link>
 
-                <nav className={`${header ? "md:flex" : "hidden"} hidden space-x-6 `}>
+
+                <nav className={`md:flex hidden space-x-6 `}>
                     {navItems.map((item) => (
                         <motion.div
                             key={item.name}
@@ -71,19 +74,21 @@ const Header: React.FC = () => {
                         >
                             <Link
                                 to={item.path}
-                                className="text-gray-700 hover:text-violet-500 transition duration-300"
+                                className="text-black hover:text-violet-500 transition duration-300"
                             >
                                 {item.name}
                             </Link>
                         </motion.div>
                     ))}
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-md transition duration-300"
-                    >
-                        Get a Quote
-                    </motion.button>
+                    <Link to={"/cost-Calculator"}>
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-md transition duration-300"
+                        >
+                            Get a Quote
+                        </motion.button>
+                    </Link>
                 </nav>
 
                 <motion.div
@@ -101,8 +106,10 @@ const Header: React.FC = () => {
                 </motion.div>
             </div>
 
+
+            {/*MOBILE NAV */}
             <motion.nav
-                className={`md:hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 ${isOpen ? 'block' : 'hidden'
+                className={`md:flex fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 ${isOpen ? 'block' : 'hidden'
                     }`}
                 initial={{ opacity: 0, y: '-100%' }}
                 animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : '-100%' }}
