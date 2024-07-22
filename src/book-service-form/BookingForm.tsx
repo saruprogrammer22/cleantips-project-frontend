@@ -26,6 +26,8 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { motion } from 'framer-motion';
+import { useBookingServiceApiRequest } from '../../api/BookingServiceApi';
+import { toast } from 'sonner';
 
 const formSchema = z.object({
     name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -37,9 +39,9 @@ const formSchema = z.object({
     }),
     time: z.string().min(1, { message: 'Please select a time.' }),
     serviceType: z.string().min(1, { message: 'Please select a service type.' }),
+    location: z.string().min(1, { message: 'Please enter a location.' }),
     message: z.string().optional(),
-    isRecurring: z.boolean().optional(),
-    frequency: z.string().optional(),
+    isSubscribe: z.boolean().default(false),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -52,27 +54,34 @@ type Props = {
 const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
+    const { bookService, isLoading } = useBookingServiceApiRequest()
+
     const {
         register,
         handleSubmit,
         control,
-        watch,
-        formState: { errors, isSubmitting },
+        formState: { errors },
         reset,
     } = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            isRecurring: false,
+            isSubscribe: false,
         },
     });
 
-    const isRecurring = watch('isRecurring');
+
+
 
     const onSubmit = async (data: FormValues) => {
-        console.log(data)
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        reset();
-        setIsDialogOpen(false);
+        try {
+            bookService(data);
+            console.log(data)
+            reset();
+            setIsDialogOpen(false);
+            toast.success("Booking request submitted successfully!");
+        } catch (error) {
+            toast.error("Failed to submit booking request. Please try again.");
+        }
     };
 
 
@@ -90,9 +99,9 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold text-center text-gray-800 dark:text-white">Book Your Premium Cleaning Service</DialogTitle>
+                        <DialogTitle className="text-2xl font-bold text-center text-gray-800 dark:text-white">Book Your Cleaning Service</DialogTitle>
                         <DialogDescription className="text-center text-gray-600 dark:text-gray-300">
-                            Experience spotless living with our professional cleaning service.
+                            Get a spotless home with our professional service.
                         </DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -105,7 +114,7 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
                                     id="name"
                                     className="mt-1"
                                     {...register('name')}
-                                    placeholder="John Doe"
+                                    placeholder="Joseph De leon"
                                 />
                                 {errors.name && (
                                     <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
@@ -136,10 +145,25 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
                                 id="email"
                                 className="mt-1"
                                 {...register('email')}
-                                placeholder="john@example.com"
+                                placeholder="joseph@example.com"
                             />
                             {errors.email && (
                                 <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+                            )}
+                        </div>
+
+                        <div>
+                            <Label htmlFor="location" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Location
+                            </Label>
+                            <Input
+                                id="location"
+                                className="mt-1"
+                                {...register('location')}
+                                placeholder="Enter your address"
+                            />
+                            {errors.location && (
+                                <p className="mt-1 text-sm text-red-500">{errors.location.message}</p>
                             )}
                         </div>
 
@@ -227,39 +251,26 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
                             )}
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                            <Checkbox
-                                id="isRecurring"
-                                {...register('isRecurring')}
-                            />
-                            <Label htmlFor="isRecurring" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Recurring Service
-                            </Label>
-                        </div>
-
-                        {isRecurring && (
-                            <div>
-                                <Label htmlFor="frequency" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Frequency
-                                </Label>
+                        <div className="flex flex-col">
+                            <div className='flex items-center space-x-2'>
                                 <Controller
+                                    name="isSubscribe"
                                     control={control}
-                                    name="frequency"
                                     render={({ field }) => (
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select frequency" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="weekly">Weekly</SelectItem>
-                                                <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                                                <SelectItem value="monthly">Monthly</SelectItem>
-                                            </SelectContent>
-                                        </Select>
+                                        <Checkbox
+                                            id="isSubscribe"
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
                                     )}
                                 />
+                                <Label htmlFor="isSubscribe" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Subscribe to our Newsletter
+                                </Label>
                             </div>
-                        )}
+                            <p className='text-[12px]'>By agreeing, you will receive our Promotions, News, Giveaways (& much more) via Email.
+                            </p>
+                        </div>
 
                         <div>
                             <Label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -276,10 +287,10 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
                         <DialogFooter>
                             <Button
                                 type="submit"
-                                disabled={isSubmitting}
+                                disabled={isLoading}
                                 className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
                             >
-                                {isSubmitting ? 'Booking...' : 'Confirm Booking'}
+                                {isLoading ? 'Booking...' : 'Confirm Booking'}
                             </Button>
                         </DialogFooter>
                     </form>
