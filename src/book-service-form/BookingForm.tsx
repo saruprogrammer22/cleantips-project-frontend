@@ -104,10 +104,10 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
 
             // Send email to client/customer
             await emailjs.send(serviceId, userTemplateId, emailData, publicKey);
-
-            reset();
             setIsLoading(false)
             setIsDialogOpen(false);
+            reset();
+
             toast.success("Booking request submitted successfully!");
         } catch (error) {
             toast.error("Failed to submit booking request. Please try again.");
