@@ -1,7 +1,9 @@
 import { IBooking } from '../src/types';
 import { useMutation } from "react-query";
 import { toast } from "sonner";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const useBookingServiceApiRequest = () => {
     // This function sends the booking data to the server
     const bookingServiceApiRequest = async (bookingData: IBooking) => {

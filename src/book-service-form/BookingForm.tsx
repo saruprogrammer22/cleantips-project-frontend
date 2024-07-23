@@ -271,10 +271,18 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
                                             <SelectValue placeholder="Select service type" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="standard">Standard Cleaning</SelectItem>
-                                            <SelectItem value="deep">Deep Cleaning</SelectItem>
-                                            <SelectItem value="move-in">Move-in/Move-out Cleaning</SelectItem>
-                                            <SelectItem value="office">Office Cleaning</SelectItem>
+                                            <SelectItem value="Residential & Condo Cleaning">Residential & Condo Cleaning</SelectItem>
+                                            <SelectItem value="Commercial Space Cleaning">Commercial Space Cleaning</SelectItem>
+                                            <SelectItem value="Post-Construction Cleaning">Post-Construction Cleaning</SelectItem>
+                                            <SelectItem value="Sanitation & Disinfection">Sanitation & Disinfection</SelectItem>
+                                            <SelectItem value="Carpet & Upholstery Cleaning">Carpet & Upholstery Cleaning</SelectItem>
+                                            <SelectItem value="Pest Control">Pest Control</SelectItem>
+                                            <SelectItem value="Aircon Services">Aircon Services</SelectItem>
+                                            <SelectItem value="Grass Cutting">Grass Cutting</SelectItem>
+                                            <SelectItem value="Hauling">Hauling</SelectItem>
+                                            <SelectItem value="Exterior Building Cleaning">Exterior Building Cleaning</SelectItem>
+                                            <SelectItem value="Other Services">Other Services</SelectItem>
+                                            <SelectItem value="Manpower Services">Manpower Services</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 )}
