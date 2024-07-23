@@ -46,6 +46,9 @@ const ContactPage: React.FC = () => {
     const onSubmit = async (data: FormValues) => {
         try {
             setIsLoading(true)
+            if (isLoading) {
+                toast.loading("Please wait, we're processing your request and sending your message.");
+            }
             // for admin
             await emailjs.send(serviceId, adminIdTemplate, data, publicKey);
             // for client

@@ -84,6 +84,9 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
     const onSubmit = async (data: FormValues) => {
         try {
             setIsLoading(true)
+            if (isLoading) {
+                toast.loading("Booking in progress. Please wait while we schedule your service.");
+            }
             // Prepare the email data
             const emailData = {
                 name: data.name,
