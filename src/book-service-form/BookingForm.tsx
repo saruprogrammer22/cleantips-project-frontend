@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -64,7 +64,7 @@ const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY || "KlyD6zYSuUYUcBHzc"
 const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
-    const { bookService, isLoading } = useBookingServiceApiRequest()
+    const { bookService } = useBookingServiceApiRequest()
 
     const {
         register,
@@ -79,12 +79,13 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
         },
     });
 
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
 
 
     const onSubmit = async (data: FormValues) => {
         try {
-
+            setIsLoading(true)
             // Prepare the email data
             const emailData = {
                 name: data.name,
@@ -97,10 +98,8 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
                 message: data.message || "No special instructions",
                 isSubscribe: data.isSubscribe ? 'Yes' : 'No',
             };
-
             // Send email to admin
             await emailjs.send(serviceId, adminId, emailData, publicKey);
-
 
             // Send email to client/customer
             await emailjs.send(serviceId, userTemplateId, emailData, publicKey);
@@ -110,6 +109,7 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
 
             console.log(data)
             reset();
+            setIsLoading(false)
             setIsDialogOpen(false);
             toast.success("Booking request submitted successfully!");
         } catch (error) {
