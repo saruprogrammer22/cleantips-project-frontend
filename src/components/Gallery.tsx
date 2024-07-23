@@ -14,24 +14,18 @@ const itemsPerPage = 6;
 
 
 const images = [
-    "https://via.placeholder.com/400x250?text=Project+1",
-    "https://via.placeholder.com/400x250?text=Project+2",
-    "https://via.placeholder.com/400x250?text=Project+3",
-    "https://via.placeholder.com/400x250?text=Project+4",
-    "https://via.placeholder.com/400x250?text=Project+5",
-    "https://via.placeholder.com/400x250?text=Project+6",
-    "https://via.placeholder.com/400x250?text=Project+7",
-    "https://via.placeholder.com/400x250?text=Project+8",
-    "https://via.placeholder.com/400x250?text=Project+9",
-    "https://via.placeholder.com/400x250?text=Project+10",
-    "https://via.placeholder.com/400x250?text=Project+11",
-    "https://via.placeholder.com/400x250?text=Project+12",
-    "https://via.placeholder.com/400x250?text=Project+13",
-    "https://via.placeholder.com/400x250?text=Project+14",
-    "https://via.placeholder.com/400x250?text=Project+15",
-    "https://via.placeholder.com/400x250?text=Project+16",
-    "https://via.placeholder.com/400x250?text=Project+17",
-    "https://via.placeholder.com/400x250?text=Project+18",
+    { url: "https://via.placeholder.com/400x250?text=Residential+%26+Condo+Cleaning", title: "Residential & Condo Cleaning" },
+    { url: "https://via.placeholder.com/400x250?text=Commercial+Space+Cleaning", title: "Commercial Space Cleaning" },
+    { url: "https://via.placeholder.com/400x250?text=Post-Construction+Cleaning", title: "Post-Construction Cleaning" },
+    { url: "https://via.placeholder.com/400x250?text=Sanitation+%26+Disinfection", title: "Sanitation & Disinfection" },
+    { url: "https://via.placeholder.com/400x250?text=Carpet+%26+Upholstery+Cleaning", title: "Carpet & Upholstery Cleaning" },
+    { url: "https://via.placeholder.com/400x250?text=Pest+Control", title: "Pest Control" },
+    { url: "https://via.placeholder.com/400x250?text=Aircon+Services", title: "Aircon Services" },
+    { url: "https://via.placeholder.com/400x250?text=Grass+Cutting", title: "Grass Cutting" },
+    { url: "https://via.placeholder.com/400x250?text=Hauling", title: "Hauling" },
+    { url: "https://via.placeholder.com/400x250?text=Exterior+Building+Cleaning", title: "Exterior Building Cleaning" },
+    { url: "https://via.placeholder.com/400x250?text=Other+Services", title: "Other Services" },
+    { url: "https://via.placeholder.com/400x250?text=Manpower+Services", title: "Manpower Services" },
 ];
 
 
@@ -88,9 +82,9 @@ const Gallery: React.FC = () => {
                             whileHover={{ y: -10 }}
                             className="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl group"
                         >
-                            <img src={image} alt={`Cleaning Service ${index + 1}`} className="w-full h-48 object-cover" />
+                            <img src={image.url} alt={`Cleaning Service ${index + 1}`} className="w-full h-48 object-cover" />
                             <div className="p-4">
-                                <h3 className="text-lg font-semibold text-violet-700 mb-2">Cleaning Service {index + 1}</h3>
+                                <h3 className="text-lg font-semibold text-violet-700 mb-2">{image.title} {index + 1}</h3>
                                 <p className="text-gray-600 text-sm mb-4">Professional cleaning for your home or office</p>
                                 <div className="flex items-center text-violet-500">
                                     <FaCheck className="mr-2" />

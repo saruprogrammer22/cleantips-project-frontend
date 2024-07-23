@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { FaYoutube, FaTiktok, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { MdTouchApp } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const ContactDetails: React.FC = () => {
 
@@ -33,50 +34,56 @@ const ContactDetails: React.FC = () => {
                 </motion.h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <motion.div
-                        variants={cardVariants}
-                        initial={{ opacity: 0, y: 100 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="bg-white rounded-lg shadow-lg p-8"
-                    >
-                        <FaPhone className="text-5xl text-blue-500 mb-6 mx-auto" />
-                        <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">Phone</h3>
-                        <p className="text-gray-600 text-center">
-                            +63 9424 442 4242
-                            <br />
-                            +63 9323 323 3232
-                        </p>
-                    </motion.div>
-                    <motion.div
-                        variants={cardVariants}
-                        initial={{ opacity: 0, y: 100 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="bg-white rounded-lg shadow-lg p-8"
-                    >
-                        <FaEnvelope className="text-5xl text-green-500 mb-6 mx-auto" />
-                        <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">E-mail</h3>
-                        <p className="text-gray-600 text-center">email@example.com</p>
-                    </motion.div>
-                    <motion.div
-                        variants={cardVariants}
-                        initial={{ opacity: 0, y: 100 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="bg-white rounded-lg shadow-lg p-8"
-                    >
-                        <FaMapMarkerAlt className="text-5xl text-red-500 mb-6 mx-auto" />
-                        <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">Address</h3>
-                        <p className="text-gray-600 text-center">
-                            Person C. FullName
-                            <br />
-                            469 Address Street
-                            <br />
-                            Novaliches, 1117 Quezon City
-                            <br />
-                        </p>
-                    </motion.div>
+                    <Link to={"/contact"}>
+                        <motion.div
+                            variants={cardVariants}
+                            initial={{ opacity: 0, y: 100 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="bg-white rounded-lg shadow-lg p-8"
+                        >
+                            <FaPhone className="text-5xl text-blue-500 mb-6 mx-auto" />
+                            <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">Phone</h3>
+                            <p className="text-gray-600 text-center">
+                                +63 9424 442 4242
+                                <br />
+                                +63 9323 323 3232
+                            </p>
+                        </motion.div>
+                    </Link>
+                    <Link to={"/contact"}>
+                        <motion.div
+                            variants={cardVariants}
+                            initial={{ opacity: 0, y: 100 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="bg-white rounded-lg shadow-lg p-8"
+                        >
+                            <FaEnvelope className="text-5xl text-green-500 mb-6 mx-auto" />
+                            <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">E-mail</h3>
+                            <p className="text-gray-600 text-center">email@example.com</p>
+                        </motion.div>
+                    </Link>
+                    <Link to={"/contact"}>
+                        <motion.div
+                            variants={cardVariants}
+                            initial={{ opacity: 0, y: 100 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="bg-white rounded-lg shadow-lg p-8"
+                        >
+                            <FaMapMarkerAlt className="text-5xl text-red-500 mb-6 mx-auto" />
+                            <h3 className="text-2xl font-semibold text-center mb-4 text-indigo-900">Address</h3>
+                            <p className="text-gray-600 text-center">
+                                Person C. FullName
+                                <br />
+                                469 Address Street
+                                <br />
+                                Novaliches, 1117 Quezon City
+                                <br />
+                            </p>
+                        </motion.div>
+                    </Link>
                 </div>
                 <motion.div
                     variants={cardVariants}

@@ -2,6 +2,7 @@ import { FaLocationArrow, FaPhoneAlt, FaEnvelope, FaClock, FaFacebookF, FaInstag
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -38,11 +39,13 @@ const Footer = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}>
                         <h2 className="text-xl font-semibold mb-4 text-violet-600">Our Services</h2>
-                        <ul className="space-y-2">
-                            {['Residential & Condo Cleaning', 'Commercial Space Cleaning', 'Post-Construction Cleaning', 'Sanitation & Disinfection', 'Carpet & Upholstery Cleaning', 'Pest Control', 'Aircon Services', 'Grass Cutting', 'Hauling', 'Exterior Building Cleaning', 'Other Services', 'Manpower Services'].map(service => (
-                                <li key={service}><a href="#" className="hover:text-violet-300">{service}</a></li>
-                            ))}
-                        </ul>
+                        <Link to={"/services"}>
+                            <ul className="space-y-2">
+                                {['Residential & Condo Cleaning', 'Commercial Space Cleaning', 'Post-Construction Cleaning', 'Sanitation & Disinfection', 'Carpet & Upholstery Cleaning', 'Pest Control', 'Aircon Services', 'Grass Cutting', 'Hauling', 'Exterior Building Cleaning', 'Other Services', 'Manpower Services'].map(service => (
+                                    <li key={service}><a href="#" className="hover:text-violet-300">{service}</a></li>
+                                ))}
+                            </ul>
+                        </Link>
                     </motion.div>
 
                     {/* Latest Posts Section */}
@@ -52,14 +55,16 @@ const Footer = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}>
                         <h2 className="text-xl font-semibold mb-4 text-violet-600">Latest Posts</h2>
-                        <ul className="space-y-2">
-                            {[
-                                { title: 'Why is it Important to Keep your Space Clean and Safe?', date: 'July 09, 2024' },
-                                { title: 'Hiring a Professional Cleaning Service', date: 'July 09, 2024' }
-                            ].map(post => (
-                                <li key={post.title}><a href="#" className="hover:text-violet-300">{post.title}<br /><span className="text-sm text-gray-600">{post.date}</span></a></li>
-                            ))}
-                        </ul>
+                        <Link to={"/blog"}>
+                            <ul className="space-y-2">
+                                {[
+                                    { title: 'Why is it Important to Keep your Space Clean and Safe?', date: 'July 09, 2024' },
+                                    { title: 'Hiring a Professional Cleaning Service', date: 'July 09, 2024' }
+                                ].map(post => (
+                                    <li key={post.title}><span className="hover:text-violet-300">{post.title}<br /><span className="text-sm text-gray-600">{post.date}</span></span></li>
+                                ))}
+                            </ul>
+                        </Link>
                     </motion.div>
 
                     {/* Contact Info Section */}
@@ -93,11 +98,11 @@ const Footer = () => {
                 {/* Social Media Links */}
                 <div className="text-center mt-8">
                     <div className="flex justify-center space-x-4 mb-6">
-                        <a href="#" className="text-gray-300 hover:text-blue-600"><FaFacebookF className="text-xl" /></a>
-                        <a href="#" className="text-gray-300 hover:text-red-6
+                        <a title='social-links' href="https://www.facebook.com/CleanTipsServices" className="text-gray-300 hover:text-blue-600"><FaFacebookF className="text-xl" /></a>
+                        <a title='social-links' href="#" className="text-gray-300 hover:text-red-6
                             00"><FaYoutube className="text-xl" /></a>
-                        <a href="#" className="text-gray-300 hover:text-pink-600"><FaInstagram className="text-xl" /></a>
-                        <a href="#" className="text-gray-300 hover:text-blue-600"><FaTiktok className="text-xl" /></a>
+                        <a title='social-links' href="#" className="text-gray-300 hover:text-pink-600"><FaInstagram className="text-xl" /></a>
+                        <a title='social-links' href="#" className="text-gray-300 hover:text-blue-600"><FaTiktok className="text-xl" /></a>
                     </div>
                     <p className="text-gray-600 text-sm">
                         &copy; {new Date().getFullYear()} <span className='text-gray-300'>"CleanTips Service PH"</span>. All Rights Reserved. by <span className='text-rose-600'>JosephDatDev22</span>

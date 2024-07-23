@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaCertificate, FaMoneyBillWave, FaClock, FaUserTie } from 'react-icons/fa';
 import ImageCollage from './ImageCollage';
 import { MdContactSupport } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const AboutUs: React.FC = () => {
     const { scrollYProgress } = useScroll();
@@ -64,13 +65,15 @@ const AboutUs: React.FC = () => {
                             <p className="text-lg mb-8 text-gray-700">
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae eos minus officiis eaque et exercitationem labore unde necessitatibus. numquam ipsam eligendi porro voluptatem cumque, asperiores, aut adipisci molestias sit libero.
                             </p>
-                            <motion.button
-                                className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                Learn More About Us
-                            </motion.button>
+                            <Link to={"/blog"} >
+                                <motion.button
+                                    className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    Learn More About Us
+                                </motion.button>
+                            </Link>
                         </div>
                         <div className="bg-indigo-100 p-12">
                             <ImageCollage />
