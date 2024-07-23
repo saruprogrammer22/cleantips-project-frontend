@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { motion } from 'framer-motion';
-import { useBookingServiceApiRequest } from '../../api/BookingServiceApi';
 import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
 
@@ -64,7 +63,6 @@ const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY || "KlyD6zYSuUYUcBHzc"
 const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
-    const { bookService } = useBookingServiceApiRequest()
 
     const {
         register,
@@ -104,10 +102,6 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
             // Send email to client/customer
             await emailjs.send(serviceId, userTemplateId, emailData, publicKey);
 
-            console.log("Booking data:", data);
-            await bookService(data); // Assuming this saves the booking to your backend
-
-            console.log(data)
             reset();
             setIsLoading(false)
             setIsDialogOpen(false);
