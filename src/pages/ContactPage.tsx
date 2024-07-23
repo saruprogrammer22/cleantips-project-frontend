@@ -53,7 +53,7 @@ const ContactPage: React.FC = () => {
             await emailjs.send(serviceId, adminIdTemplate, data, publicKey);
             // for client
             await emailjs.send(serviceId, clientIdTemplate, data, publicKey);
-            toast.success("Booking request submitted successfully!");
+            toast.success("Your contact message has been successfully submitted. Thank you for reaching out to CLEANTIPS SERVICES!");
             setIsLoading(false)
             form.reset();
         } catch (error) {
