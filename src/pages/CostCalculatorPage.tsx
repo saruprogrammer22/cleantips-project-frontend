@@ -94,7 +94,8 @@ const CostCalculatorPage = () => {
                         <BookingFormSubmit title='Book a schedule now!' />
                     </div>
                     <p className="text-xs text-gray-500 text-center">
-                        Prices include 12% VAT. Large areas may qualify for discounts.
+                        {/* For example: "Prices include VAT. Discounts available for large areas." */}
+                        [Your pricing information or terms go here]
                     </p>
                 </motion.div>
             </div>
