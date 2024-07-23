@@ -28,6 +28,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { motion } from 'framer-motion';
 import { useBookingServiceApiRequest } from '../../api/BookingServiceApi';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
+
 
 const formSchema = z.object({
     name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -50,6 +52,14 @@ type Props = {
     title?: string;
     styleButton?: string;
 }
+
+
+const serviceId = import.meta.env.EMAILJS_SERVICE_ID || "service_ltucls2"
+const adminId = import.meta.env.EMAILJS_TEMPLATE_ID_ADMIN || "template_g60jbeo"
+const userTemplateId = import.meta.env.EMAILJS_TEMPLATE_ID_USER || "template_zhms3jd"
+const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY || "KlyD6zYSuUYUcBHzc"
+
+
 
 const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -74,7 +84,30 @@ const BookingForm = ({ title = "Book a clean", styleButton, }: Props) => {
 
     const onSubmit = async (data: FormValues) => {
         try {
-            bookService(data);
+
+            // Prepare the email data
+            const emailData = {
+                name: data.name,
+                phone: data.phone,
+                email: data.email,
+                date: data.date.toLocaleDateString(),
+                time: data.time,
+                serviceType: data.serviceType,
+                location: data.location,
+                message: data.message || "No special instructions",
+                isSubscribe: data.isSubscribe ? 'Yes' : 'No',
+            };
+
+            // Send email to admin
+            await emailjs.send(serviceId, adminId, emailData, publicKey);
+
+
+            // Send email to client/customer
+            await emailjs.send(serviceId, userTemplateId, emailData, publicKey);
+
+            console.log("Booking data:", data);
+            await bookService(data); // Assuming this saves the booking to your backend
+
             console.log(data)
             reset();
             setIsDialogOpen(false);
